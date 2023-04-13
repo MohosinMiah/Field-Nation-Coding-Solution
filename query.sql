@@ -6,7 +6,7 @@ SELECT
     MAX( tr.`time_taken` ) AS recentExamTaken
 FROM
     `user` AS u
-    LEFT JOIN test_result AS tr ON u.user_id = tr.user_id
+    LEFT JOIN `test_result` AS tr ON u.`user_id` = tr.`user_id`
 GROUP BY
     u.`user_id`
 ORDER BY
