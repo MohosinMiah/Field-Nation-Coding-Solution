@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Animation</title>
+	<style>
+		body {
+		margin: 0;
+		padding: 0;
+		background-color: #fff;
+		}
+		#boxSquareAnimation {
+		position: absolute;
+		top: 50px;
+		left: 0px;
+		width: 100px;
+		height: 100px;
+		background-color: blue;
+		}
+	</style>
+</head>
+<body>
+	<div id="boxSquareAnimation"></div>
+	<script>
+	// Create a new class called BoxSquareAnimation
+	class SquareBoxAnimation
+	{
+
+		constructor( element )
+		{
+			this.element         = element;
+			this.x               = 0;
+			this.y               = 50;
+			this.speedX          = 10;
+			this.speedY          = 10;
+			this.startX          = element.offsetWidth;
+			this.startY          = element.offsetHeight;
+			this.maxWindowWidth  = window.innerWidth;
+			this.maxWindowHeight = window.innerHeight;
+			this.intervalId      = null;
+		}
+
+		// Update the Square Box Animation
+		update()
+		{
+			// Update the x and y coordinates
+			this.x += this.speedX;
+			this.y += this.speedY;
+
+			// Check if the  square hits or goes over the edge of the window
+			if( this.x <= 0 || this.x + this.startX >= this.maxWindowWidth )
+			{
+				this.speedX *= -1; // Change direction for X-axis
+			}
+			if( this.y <= 0 || this.y + this.startY >= this.maxWindowHeight )
+			{
+				this.speedY *= -1; // Change direction for Y-axis
+			}
+
+			// Update the position
+			this.element.style.left = this.x + 'px';
+			this.element.style.top  = this.y + 'px';
+		}
+
+		// Start the animation
+		start()
+		{
+			this.intervalId = setInterval( () =>
+			{
+				this.update();
+			}, 1000/60 );
+		}
+
+		// Stop the animation
+		stop()
+		{
+			clearInterval( this.intervalId );
+		}
+	}
+
+	// Create a new instance of the SquareBoxAnimation class
+	const squareBoxAnimation = new SquareBoxAnimation( document.getElementById( 'boxSquareAnimation' ) );
+
+	// Start the animation
+	squareBoxAnimation.start();
+	</script>
+</body>
+</html>
