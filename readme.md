@@ -1,6 +1,8 @@
 ## Field Nation Coding Solution
 
 ## Solution for: 1. (PHP/HTML)  
+<code>
+
 <?php
 /**
  * ArrayTable class is for displaying an array as an HTML table using the ArrayObject class
@@ -51,3 +53,5 @@ $dataTable[ 'Description' ] = 'A beautiful country';
 // Display the data as an HTML table
 $dataTable->displayAsTable();
 ?>
+
+</code>
